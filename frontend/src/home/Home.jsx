@@ -22,9 +22,19 @@ class Home extends React.Component{
                     headerName: 'Apellidos',
                     width: 300
                 },
+                {
+                    field: 'mail',
+                    headerName: 'Correo',
+                    width: 300
+                },
+                {
+                    field: 'phone',
+                    headerName: 'Telefono',
+                    width: 300
+                },
             ],
             filas:[
-                {id:'201612272', name:'Andrés Esteban', lastname:'Carvajal Morales'}
+                {id:'201612272', name:'Andrés Esteban', lastname:'Carvajal Morales', mail:'andyecarvajal@gmail.com', phone:'5241-4066'}
             ]
         }
     }
