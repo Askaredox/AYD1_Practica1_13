@@ -34,7 +34,8 @@ class Home extends React.Component{
                 },
             ],
             filas:[
-                {id:'201612272', name:'Andrés Esteban', lastname:'Carvajal Morales', mail:'andyecarvajal@gmail.com', phone:'5241-4066'}
+                {id:'201612272', name:'Andrés Esteban', lastname:'Carvajal Morales', mail:'andyecarvajal@gmail.com', phone:'5241-4066'},
+                {id:'201325533', name:'Erick Fernando', lastname:'Elias Diaz', mail:'elias25533@gmail.com', phone:'4574-7474'}
             ]
         }
     }
