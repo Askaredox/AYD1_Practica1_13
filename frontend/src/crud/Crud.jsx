@@ -12,8 +12,45 @@ class Crud extends React.Component {
         super()
         this.state = {
             insertState: {
-            }
+            },
+            columnas: [
+                {
+                    field: 'id',
+                    headerName: 'Id',
+                    width: 150
+                },
+                {
+                    field: 'titulo',
+                    headerName: 'Titulo',
+                    width: 300
+                },
+                {
+                    field: 'lanzamiento',
+                    headerName: 'Lanzamiento',
+                    width: 300
+                },
+                {
+                    field: 'genero',
+                    headerName: 'Genero',
+                    width: 300
+                },
+                {
+                    field: 'desarrollador',
+                    headerName: 'Desarrollador',
+                    width: 300
+                },
+                {
+                    field: 'ESRB_rating',
+                    headerName: 'ESRB_rating',
+                    width: 300
+                },
+            ],
+            filas:[]
         }
+        Http.getVid().then((val)=>{
+            console.log(val);
+            this.setState({filas:val})
+        })
     }
 
     insertRequest = (event) =>
@@ -91,8 +128,24 @@ class Crud extends React.Component {
                     </label>
                     <input type="submit" value="Submit" />
                 </form>
+                <div>
+                    <h1>Bienvenido, somos el grupo: Tecnólogos</h1>
+                    <div style={{ height: 400, width: '100%' }}>
+                        <DataGrid rows={this.state.filas} columns={this.state.columnas} pageSize={10}/>
+                    </div>
+                </div>
             </div>
         );
+    }
+}
+
+class Http {
+
+    static async getVid(){
+        const URL = 'http://192.168.0.3:5000/videojuegos';
+        const response = await fetch(URL);
+        const res = await response.json();
+        return res;
     }
 }
 
