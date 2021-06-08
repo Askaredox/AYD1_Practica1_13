@@ -1,4 +1,4 @@
-FROM node:12 as build-step
+FROM node:current-alpine as build-step
 RUN mkdir /app
 WORKDIR /app
 COPY package.json /app
