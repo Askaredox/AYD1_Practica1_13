@@ -1,14 +1,38 @@
-const http = require('http');
+const express = require('express'),
+      path = require('path'),
+      morgan = require('morgan'),
+      mysql = require('mysql'),
+      myConnection = require('express-myconnection')
 
-const hostname = '0.0.0.0';
-const port = 3000;
+const app = express()
 
-const server = http.createServer((req, res) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-    res.end('Hello World');
-});
+// importing routes
+const videojuegoRoutes = require('./routes/videojuego')
 
-server.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/`);
-});
+// settings
+app.set('port', process.env.PORT || 3000)
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs')
+
+// middlewares
+app.use(morgan('dev'))
+app.use(myConnection(mysql, {
+  host: '45.77.95.142',
+  user: 'admin',
+  password: 'admin',
+  port: 3306,
+  database: 'AYD1'
+}, 'single'))
+app.use(express.urlencoded({extended: false}))
+
+// routes
+app.use('/', videojuegoRoutes)
+
+// static files
+app.use(express.static(path.join(__dirname, 'public')))
+
+// starting the server
+app.listen(app.get('port'), () =>
+{
+  console.log(`server on port ${app.get('port')}`)
+})
